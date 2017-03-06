@@ -117,8 +117,12 @@
          "transition": "all " + settings.animationTime + "ms " + settings.easing
     	  });
     	}
+      var done = false;
       $(this).one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
-        if (typeof settings.afterMove == 'function') settings.afterMove(index);
+        if( !done ){
+          if (typeof settings.afterMove == 'function') settings.afterMove(index);
+          done = true;
+        }
       });
     }
 
